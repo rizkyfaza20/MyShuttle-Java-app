@@ -7,7 +7,7 @@ trigger:
  - main
 
 pool:
-  vmImage: 'ubuntu'
+  vmImage: 'ubuntu-latest'
 
 jobs:
   - job: Install_Maven
