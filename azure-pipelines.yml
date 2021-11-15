@@ -1,0 +1,35 @@
+variables:
+  - group: 'Semantic Versioning - Maven App'
+  - name: 'ver.Patch'
+    value: $[counter(variables['ver.Minor'], 0)]
+
+trigger:
+ - main
+
+pool:
+  vmImage: 'ubuntu'
+
+jobs:
+  - job: Install_Maven
+    displayName: 'Building the Web app'
+    steps:
+      - task: Maven@3 
+        displayName: 'Build the Maven'
+        inputs:
+          options: '-DskipITs --settings ./maven/settings.xml'
+      
+      - task: CopyFiles@1
+        inputs:
+          SourceFolder: '$(build.SourcesDirectory)'
+          Contents: |
+            **/target/*.war
+            *.sql
+          TargetFolder: '$(build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publishing the artifacts'
+        inputs:
+          PathtoPublish: '$(build.ArtifactStagingDirectory)'
+          
+
+    
