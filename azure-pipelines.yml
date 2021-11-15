@@ -7,7 +7,7 @@ trigger:
  - main
 
 pool:
-  vmImage: 'ubuntu'
+  vmImage: 'ubuntu-latest'
 
 jobs:
   - job: Install_Maven
@@ -19,6 +19,7 @@ jobs:
           options: '-DskipITs --settings ./maven/settings.xml'
       
       - task: CopyFiles@1
+        displayName: 'Copying Files'
         inputs:
           SourceFolder: '$(build.SourcesDirectory)'
           Contents: |
