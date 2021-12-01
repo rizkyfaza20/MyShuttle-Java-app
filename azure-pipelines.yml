@@ -3,6 +3,8 @@ variables:
   - name: 'ver.Patch'
     value: $[counter(variables['ver.Minor'], 0)]
 
+name: PROD-ver$(ver.Major).$(ver.Minor).$(ver.Patch)
+
 trigger:
  - main
 
