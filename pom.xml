@@ -7,7 +7,7 @@
   <version>0.0.1</version>
   <packaging>war</packaging>
   <build>
-    <defaultGoal> build </defaultGoal>
+    <defaultGoal> compile </defaultGoal>
   	<finalName>myshuttledev</finalName>
     <plugins>
       <plugin>
